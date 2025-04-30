@@ -1,0 +1,27 @@
+BERT Question Answering NotebookThis Jupyter Notebook demonstrates how to build and train a question answering model using the simpletransformers library based on the BERT model. The model is trained on a custom dataset provided in JSON format and can then be used to predict answers to new questions based on given contexts.Project DescriptionThe notebook performs the following steps:Installs necessary libraries (simpletransformers).Loads training and evaluation data from specified JSON files.Initializes a Question Answering model using a pre-trained bert-base-cased model.Trains the model on the training data, evaluating periodically on the test data.Evaluates the trained model on the test data to get performance metrics.Demonstrates how to use the trained model to predict answers for new questions and contexts.Setup and InstallationClone the repository (if applicable) or ensure you have the notebook file (Bert_question_answers.ipynb).Ensure you have Python installed.Install the required libraries:pip install simpletransformers datasets
+(Note: The notebook also includes commands to install tqdm, logging, transformers, which are dependencies handled by simpletransformers and datasets, but you can keep the explicit installs if preferred.)Prepare your data: Make sure you have your training data (train.json) and evaluation data (test.json) in the same directory as the notebook, or update the file paths in the notebook accordingly. The data should be in a SQuAD-like JSON format.Data FormatThe training and testing data should be in a JSON format similar to the SQuAD dataset. Each entry in the JSON list should be an object with the following structure:[
+  {
+    "context": "Your context text here...",
+    "qas": [
+      {
+        "id": "unique_question_id_1",
+        "is_impossible": false,
+        "question": "Your question here?",
+        "answers": [
+          {
+            "text": "The answer span from the context",
+            "answer_start": 123 // Character index where the answer starts in the context
+          }
+        ]
+      },
+      {
+        "id": "unique_question_id_2",
+        "is_impossible": true,
+        "question": "Another impossible question?",
+        "answers": [] // Empty array for impossible questions
+      }
+    ]
+  },
+  ...
+]
+UsageOpen the notebook: Open Bert_question_answers.ipynb in a Jupyter Notebook environment (like JupyterLab or Google Colab).Run the cells sequentially: Execute each code cell in order.The first cell installs dependencies.The next cells load the training and testing data.Subsequent cells define model arguments, initialize the model, and start the training process.The final cells evaluate the model and demonstrate prediction.Modify and Experiment:You can change the model_type and model_name variables to experiment with different BERT-based models or other compatible models from the Hugging Face Transformers library.Adjust the train_args dictionary to modify training parameters like the number of epochs, batch sizes, and evaluation frequency.Update the to_predict variable with your own context and questions to get predictions from the trained model.Dependenciessimpletransformerstransformersdatasetstorch (or tensorflow, depending on the backend used by simpletransformers)pandastqdmloggingOther dependencies listed in the notebook's installation output.Model DetailsModel Type: BERTBase Model: bert-base-cased (This can be changed in the notebook)OutputsThe notebook will output:Installation progress and messages.Training progress, including loss and evaluation metrics per epoch.Evaluation results (correct, similar, incorrect predictions, and evaluation loss).Predicted answers for the example to_predict input.Future ImprovementsExperiment with different pre-trained models.Tune hyperparameters for better performance.Implement more sophisticated data loading and preprocessing.Add visualizations for training progress and results.Integrate with a more extensive dataset.
